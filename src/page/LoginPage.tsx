@@ -1,53 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import '../App.css'
-// import '../MyDesign.css';
+import { useState } from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Importation de useNavigate pour la redirection après connexion.
 
+// Composant LoginPage pour gérer la connexion des utilisateurs.
 function LoginPage() {
+    // État local pour stocker les valeurs de l'email et du mot de passe.
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Initialisation du hook useNavigate
+    const navigate = useNavigate(); // Initialisation de useNavigate.
 
-
+    // Fonction handleLogin pour gérer le processus de connexion.
     const handleLogin = async () => {
-        // Simuler une authentification
-        console.log("email : "+email);
-        console.log("password : "+password);
+        console.log("email : "+email); // Affichage de l'email pour le débogage.
+        console.log("password : "+password); // Affichage du mot de passe pour le débogage.
         try {
-            // Simuler une authentification (vous pouvez toujours exécuter un appel API ici)
+            // Tentative de connexion via une requête POST à l'API.
             const response = await axios.post('/api/login', { email, password });
-            console.log(response.data); // Logique de gestion après connexion réussie
+            console.log(response.data); // Affichage des données reçues pour le débogage.
 
-            // Redirection vers la page des tâches
+            // Redirection vers la page des tâches après une connexion réussie.
             navigate('/tasks');
         } catch (error) {
-            console.error('Erreur de connexion', error);
-            // Gérer l'erreur si nécessaire
+            console.error('Erreur de connexion', error); // Gestion des erreurs de connexion.
         }
     };
 
-  return (
-    <>
-     {/*   <div className="login-container">
-            <div className="login-form">
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                <button onClick={handleLogin}>Login</button>
-            </div>
-        </div>
-*/}
+    // Rendu du formulaire de connexion.
+    return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     alt="Your Company"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="https://i.pngimg.me/thumb/f/350/compngwingnlknx.jpg?color=indigo&shade=600"
                     className="mx-auto h-10 w-auto"
                 />
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    Sign in to your account
+                    Connectez vous a votre compte
                 </h2>
             </div>
 
@@ -55,7 +43,7 @@ function LoginPage() {
                 <form action="#" method="POST" className="space-y-6">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                            Email address
+                            Adresse mail
                         </label>
                         <div className="mt-2">
                             <input
@@ -74,11 +62,11 @@ function LoginPage() {
                     <div>
                         <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                Password
+                                Mot de passe
                             </label>
                             <div className="text-sm">
                                 <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    Forgot password?
+                                    Mot de passe oublie
                                 </a>
                             </div>
                         </div>
@@ -102,14 +90,13 @@ function LoginPage() {
                             type="submit"
                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Sign in
+                            Connexion
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    </>
-  )
+    );
 }
 
-export default LoginPage
+export default LoginPage;
